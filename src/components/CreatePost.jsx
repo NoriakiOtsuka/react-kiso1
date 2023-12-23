@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios"
 
+import { BaseUrlContext } from "./providers/BaseUrlProvider";
+
 export const CreatePost = props => {
   const { posted } = props;
-  const baseUrl = "https://railway.bulletinboard.techtrain.dev";
+  const baseUrl = useContext(BaseUrlContext);
   const urlParam = useParams();
   const postPostUrl = `${baseUrl}/threads/${urlParam.thread_id}/posts`;
   const [newPost, setNewPost] = useState("");

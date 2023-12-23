@@ -1,17 +1,22 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from "react";
 import axios from "axios"
 
+import { BaseUrlContext } from './components/providers/BaseUrlProvider';
+
 export const CreateThread = () => {
-  const baseUrl = "https://railway.bulletinboard.techtrain.dev";
+  const baseUrl = useContext(BaseUrlContext);
   const thredPostUrl = `${baseUrl}/threads`;
   const [newThread, setNewThread] = useState("");
+  const navigate = useNavigate();
 
   function createNewThread() {
     // /* axios使用の場合 */
     axios.post(thredPostUrl, {
       title: newThread
     }).then(function(response) {
+      alert("スレッドを作成しました。");
+      navigate("/");
       console.log("succeeded to create thread")
     }, function(error) {
       console.log(`failed to create thread: ${error}`)

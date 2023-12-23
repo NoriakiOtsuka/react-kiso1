@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios"
 
+import { BaseUrlContext } from './components/providers/BaseUrlProvider';
 import { ThreadItem } from "./components/ThreadItem";
 
 export const ThreadList = () => {
-  const baseUrl = "https://railway.bulletinboard.techtrain.dev";
+  const baseUrl = useContext(BaseUrlContext);
   const thredGetUrl = `${baseUrl}/threads?offset=0`;
   const [threads, setThreads] = useState([]);
 
