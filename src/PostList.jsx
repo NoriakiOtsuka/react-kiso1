@@ -16,11 +16,22 @@ export const PostList = () => {
 
   useEffect(() => { 
     axios.get(thredGetUrl)
-      .then(res => setThreads(res.data[0]))
+      .then(res => {
+        res.data.map((thread) => {
+          if (thread.id === urlParam.thread_id) {
+            setThreads(thread);
+          }
+        });
+      })
 
-      axios.get(postGetUrl)
-        .then(res => setPosts(res.data.posts))
+    axios.get(postGetUrl)
+      .then(res => setPosts(res.data.posts))
   }, [])
+
+  const posted = () => {
+    axios.get(postGetUrl)
+      .then(res => setPosts(res.data.posts))
+  }
 
   return (
     <>
@@ -29,6 +40,7 @@ export const PostList = () => {
         {posts.map(post => (
           <PostItem posts={post.post} />
         ))}
+        <CreatePost posted={posted} />
       </div>
     </>
   );
