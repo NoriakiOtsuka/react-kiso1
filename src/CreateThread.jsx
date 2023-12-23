@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios"
 
 export const CreateThread = () => {
-  const thredPostUrl = "https://railway.bulletinboard.techtrain.dev/threads";
+  const baseUrl = "https://railway.bulletinboard.techtrain.dev";
+  const thredPostUrl = `${baseUrl}/threads`;
   const [newThread, setNewThread] = useState("");
 
   function createNewThread() {

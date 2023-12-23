@@ -3,18 +3,19 @@ import './App.css';
 
 import { ThreadList } from './ThreadList';
 import { CreateThread } from './CreateThread';
+import { PostList } from './PostList';
 
-function App() {  
+function App() {
 
   return (
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
         </header>
-        {/* <ThreadList /> */}
         <Routes>
-          <Route path="" element={<ThreadList />} />
+          <Route exact path="/" element={<ThreadList />} />
           <Route path="/thread/new" element={<CreateThread />} />
+          <Route path="/thread/:thread_id" element={<PostList />} />
         </Routes>
       </div>
     </BrowserRouter>
