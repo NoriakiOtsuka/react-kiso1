@@ -26,7 +26,7 @@ export const CreatePost = props => {
 
   return (
     <>
-      <input 
+      <input
         className="inputTitle" 
         type="text" 
         placeholder="投稿しよう！"
